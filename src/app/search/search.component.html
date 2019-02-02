@@ -1,0 +1,17 @@
+<!--<input type="text" id="myInput" (keyup)="search($event)" placeholder="Search for stocks..">-->
+
+<!--<ul id="myUL">-->
+  <!--<li *ngFor="let stock of searchResult">{{stock.name}}</li>-->
+<!--</ul>-->
+
+
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input type="text" (keyup)="keySearch($event)" placeholder="Search for stocks.." aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of searchResult" [value]="option.name">
+        {{option.name}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
