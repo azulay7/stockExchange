@@ -19,7 +19,7 @@ export interface Stock{
 export class SearchComponent implements OnInit {
 
 
-  searchResult:any;
+  searchResult:any[];
   myControl = new FormControl();
 
   pickedStock:any;
@@ -56,19 +56,13 @@ export class SearchComponent implements OnInit {
 
   onEnter(event:MatOptionSelectionChange)
   {
-    this.stockService.search(event.source.value).subscribe((res:any)=>{
-      console.log('search result '+ JSON.stringify(res));
-      if(res && res.stocks && res.stocks.length == 1)
-      {
-        this.openDialog(res.stocks[0]);
-      }
-    })
+    let stock= this.searchResult.find(sel=>sel.name==event.source.value);
+    this.openDialog(stock as Stock);
 
   }
 
   openDialog(stock:Stock): void {
 
-    debugger
     const dialogRef = this.dialog.open(StockModalComponent, {
       width: '250px',
       data: {symbol:stock.symbol, name:stock.name, currentPrice: stock.currentPrice, quantity:stock.quantity}

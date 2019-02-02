@@ -10,12 +10,14 @@ import {MaterialModule} from './material/material.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { StockModalComponent } from './stock-modal/stock-modal.component';
+import { PortfolioComponent } from './portfolio/portfolio.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
-    StockModalComponent
+    StockModalComponent,
+    PortfolioComponent
   ],
   imports: [
     FormsModule,

@@ -12,6 +12,10 @@ export class StockService {
 
   }
 
+  portfolio()
+  {
+    return this.http.get(BASE_URL+'/portfolio');
+  }
 
   search(text:string){
       return this.http.post(BASE_URL+'/market/search',{
