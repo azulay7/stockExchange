@@ -11,7 +11,11 @@
     <mat-autocomplete #auto="matAutocomplete">
       <mat-option *ngFor="let option of searchResult" [value]="option.name">
         {{option.name}}
+        <button mat-raised-button (click)="openDialog(option)">Buy</button>
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
 </form>
+
+
+<!--<app-stock-modal></app-stock-modal>-->

@@ -1,6 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {StockService} from '../stock-service/stock.service';
 import {FormControl} from '@angular/forms';
+import {StockModalComponent} from '../stock-modal/stock-modal.component';
+import {MatDialog} from '@angular/material';
+
+export interface Stock{
+  symbol: string;
+  name: string,
+  price:number,
+  quantity:number
+}
 
 @Component({
   selector: 'app-search',
@@ -13,8 +22,10 @@ export class SearchComponent implements OnInit {
   searchResult:any;
   myControl = new FormControl();
 
+  pickedStock:any;
 
-  constructor(private stockService:StockService) { }
+
+  constructor(private stockService:StockService,public dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -41,6 +52,18 @@ export class SearchComponent implements OnInit {
         this.searchResult = res.stocks;
       }
     })
+  }
+
+  openDialog(stock:Stock): void {
+    const dialogRef = this.dialog.open(StockModalComponent, {
+      width: '250px',
+      data: {symbol:stock.symbol, name:stock.name, price: stock.price, quantity:stock.quantity}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.pickedStock = result;
+    });
   }
 
 }

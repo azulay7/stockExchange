@@ -9,11 +9,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from './material/material.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { StockModalComponent } from './stock-modal/stock-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchComponent
+    SearchComponent,
+    StockModalComponent
   ],
   imports: [
     FormsModule,
@@ -25,6 +27,8 @@ import { FormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   providers: [HttpClient],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[StockModalComponent],
+  exports:[StockModalComponent]
 })
 export class AppModule { }
