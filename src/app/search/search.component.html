@@ -9,9 +9,8 @@
   <mat-form-field class="example-full-width">
     <input type="text" (keyup)="keySearch($event)" placeholder="Search for stocks.." aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
     <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let option of searchResult" [value]="option.name">
+      <mat-option *ngFor="let option of searchResult" [value]="option.name" (onSelectionChange)="onEnter($event)">
         {{option.name}}
-        <button mat-raised-button (click)="openDialog(option)">Buy</button>
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>

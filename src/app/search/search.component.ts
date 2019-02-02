@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {StockService} from '../stock-service/stock.service';
 import {FormControl} from '@angular/forms';
 import {StockModalComponent} from '../stock-modal/stock-modal.component';
-import {MatDialog} from '@angular/material';
+import {MatDialog, MatOptionSelectionChange} from '@angular/material';
 
 export interface Stock{
   symbol: string;
   name: string,
-  price:number,
+  currentPrice:number,
   quantity:number
 }
 
@@ -54,10 +54,24 @@ export class SearchComponent implements OnInit {
     })
   }
 
+  onEnter(event:MatOptionSelectionChange)
+  {
+    this.stockService.search(event.source.value).subscribe((res:any)=>{
+      console.log('search result '+ JSON.stringify(res));
+      if(res && res.stocks && res.stocks.length == 1)
+      {
+        this.openDialog(res.stocks[0]);
+      }
+    })
+
+  }
+
   openDialog(stock:Stock): void {
+
+    debugger
     const dialogRef = this.dialog.open(StockModalComponent, {
       width: '250px',
-      data: {symbol:stock.symbol, name:stock.name, price: stock.price, quantity:stock.quantity}
+      data: {symbol:stock.symbol, name:stock.name, currentPrice: stock.currentPrice, quantity:stock.quantity}
     });
 
     dialogRef.afterClosed().subscribe(result => {

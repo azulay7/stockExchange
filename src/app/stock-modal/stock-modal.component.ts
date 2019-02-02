@@ -1,12 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
-
-export interface DialogData {
-  symbol: string;
-  name: string,
-  price:number,
-  quantity:number
-}
+import {Stock} from '../search/search.component';
 
 
 @Component({
@@ -18,7 +12,7 @@ export class StockModalComponent {
 
   constructor(
     public dialogRef: MatDialogRef<StockModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+    @Inject(MAT_DIALOG_DATA) public data: Stock) {}
 
   onNoClick(): void {
     this.dialogRef.close();
