@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {Store} from '@ngrx/store';
+import {selectPortfolio} from './app.selectors';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'stock-exchange';
+
+  constructor(private store$:Store<any>)
+  {
+
+  }
+  portfolio$ = this.store$.select(selectPortfolio);
+
 }

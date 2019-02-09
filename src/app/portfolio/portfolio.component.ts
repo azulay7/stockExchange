@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {StockService} from '../stock-service/stock.service';
+import {Store} from '@ngrx/store';
 
 @Component({
   selector: 'app-portfolio',
@@ -8,7 +9,9 @@ import {StockService} from '../stock-service/stock.service';
 })
 export class PortfolioComponent implements OnInit {
 
+  @Input()
   portfolio:any;
+
   constructor(private stockService:StockService) { }
 
   ngOnInit() {
