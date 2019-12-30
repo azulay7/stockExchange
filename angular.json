@@ -138,5 +138,8 @@
       }
     }
   },
-  "defaultProject": "stock-exchange"
+  "defaultProject": "stock-exchange",
+  "cli": {
+    "analytics": false
+  }
 }
